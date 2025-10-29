@@ -8,7 +8,7 @@ from typing import Optional
 from autonomes_fahren.camera import build_gstreamer_pipeline
 
 PORT = 8080
-STARTUP_WAIT = 1.0  # Sekunden warten, bis mjpegserver bereit ist
+STARTUP_WAIT = 1.0  # Sekunden warten, bis der Streamer bereit ist
 PIPELINE = build_gstreamer_pipeline()
 
 
@@ -16,7 +16,7 @@ def build_command() -> list[str]:
     return [
         sys.executable,
         "-m",
-        "mjpegserver",
+        "mjpeg_streamer",
         "--port",
         str(PORT),
         "--pipeline",
@@ -26,12 +26,12 @@ def build_command() -> list[str]:
 
 def start_stream() -> subprocess.Popen:
     cmd = build_command()
-    print(f"[INFO] Starte mjpegserver: {' '.join(cmd[1:])}")
+    print(f"[INFO] Starte mjpeg-streamer: {' '.join(cmd[1:])}")
     print(f"[INFO] Stream erreichbar unter -> http://<IP>:{PORT}")
     proc = subprocess.Popen(cmd)
     time.sleep(STARTUP_WAIT)
     if proc.poll() is not None:
-        raise RuntimeError("mjpegserver konnte nicht gestartet werden. Logs prüfen.")
+        raise RuntimeError("mjpeg-streamer konnte nicht gestartet werden. Logs prüfen.")
     return proc
 
 
