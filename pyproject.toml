@@ -22,6 +22,4 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = [
-    { include = "autonomes_fahren", from = "src" },
-]
+packages = ["src/autonomes_fahren"]
