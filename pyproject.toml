@@ -1,0 +1,27 @@
+[project]
+name = "autonomes_fahren"
+version = "0.1.0"
+description = "Jetbot"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "opencv-python",
+]
+
+[project.optional-dependencies]
+jetbot = [
+    "jetbot @ git+https://github.com/NVIDIA-AI-IOT/jetbot.git",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    { include = "autonomes_fahren", from = "src" },
+]

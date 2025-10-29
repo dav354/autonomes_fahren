@@ -43,11 +43,22 @@ git pull
 sudo apt install -y python3-pip python3-setuptools python3-distutils python3-dev python3-venv build-essential python3-opencv libopencv-dev
 scripts/configure_jetson.sh
 scripts/enable_swap.sh
-python3 -m venv ~/.venv
-source ~/.venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
-pip install -e .
 sudo reboot
+```
+
+install uv:
+
+```sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Mit uv das Projekt bauen bzw. Skripte starten:
+
+```sh
+git clone github.com/dav354/autonomes_fahren.git
+cd autonomes_fahren
+uv sync --extra jetbot
+uv run python -m autonomes_fahren.camera_calibration
 ```
 
 ## No Jupyter
