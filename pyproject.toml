@@ -3,11 +3,10 @@ name = "autonomes_fahren"
 version = "0.1.0"
 description = "Jetbot"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.9.0, <3.10"
 dependencies = [
     "numpy",
     "opencv-python",
-    "mjpegserver",
 ]
 
 [project.optional-dependencies]
